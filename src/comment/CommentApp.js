@@ -23,10 +23,27 @@ class CommentApp extends Component {
     //   userList: [...this.state.userList,item]
     // })
 
-    // 第三种方法
+    // 第三种方法 （没弄明白）
     this.setState((state)=> {
-      return (this.state.userList.splice(0,0,item))
+      return this.state.userList.splice(0,0,item)
+    }, ()=> {
+      console.log('this.state=======>',this.state);
     })
+
+    // this.setState((state)=> {
+    //   state.userList.splice(0,0,item)
+    //   return {userList: state.userList}
+    // },()=> {
+    //   console.log('this.state.userList=======>',this.state.userList); 
+    // })
+    
+    // this.state.userList.splice(0,0,item)
+    // this.setState({
+    //   userList: this.state.userList
+    // },()=> {
+    //   console.log('this.state.userList=======>',this.state.userList);
+    // })
+
   }
 
   render() {

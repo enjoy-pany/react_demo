@@ -65,6 +65,46 @@ this.setState({
 
 // 第三种方法
 this.setState((state)=> {
-  return (this.state.userList.splice(0,0,item))
+  state.userList.splice(0,0,item)
+  return {userList: state.userList}
+},()=> {
+  console.log('this.state.userList=======>',this.state.userList); 
 })
+
+// 第四种方法
+this.state.userList.splice(0,0,item)
+this.setState({
+  userList: this.state.userList
+},()=> {
+  console.log('this.state.userList=======>',this.state.userList);
+})
+```
+
+7. 如何使用state变化之后的值
+
+> 通过点击事件之后就使用修改之后的state的值，但是会发state中的并没有被立即修改，还是原先的值，我们都知道那是因为setState就相当于是一个异步操作，不能立即被修改
+
+``` 
+state = {
+	isClick: false
+}
+this.setState({
+	isClick: true
+})
+console.log(this.state.isClick) // false
+
+// 方法一：
+this.setState({
+	isClick: true
+}, ()=> {
+	console.log(this.state.isClick) // true
+})
+
+// 方法二
+async handleClick() {
+	await this.setState({
+		isClick: true
+	})
+	console.log(this.state.isClick) // true
+}
 ```
