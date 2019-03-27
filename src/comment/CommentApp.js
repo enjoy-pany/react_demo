@@ -10,6 +10,26 @@ class CommentApp extends Component {
     userList: []
   }
 
+  componentDidMount() {
+    this.getLocalStory('userList', 'userList')
+  }
+
+  setLocalStory(key,value) {
+    if(localStorage) {
+      localStorage.setItem(key, value)
+    }
+  }
+  getLocalStory(key,stateName) {
+    if(localStorage) {
+      const localItem = localStorage.getItem(key)      
+      if(localItem) {
+        this.setState({
+          [stateName]: JSON.parse(localItem)
+        })
+      }
+    }
+  }
+
   handleSubmitComment(item) {
     console.log(item)
     // 第一种方法
@@ -28,6 +48,7 @@ class CommentApp extends Component {
       return this.state.userList.splice(0,0,item)
     }, ()=> {
       console.log('this.state=======>',this.state);
+      this.setLocalStory('userList', JSON.stringify(this.state.userList))
     })
 
     // this.setState((state)=> {
@@ -43,7 +64,6 @@ class CommentApp extends Component {
     // },()=> {
     //   console.log('this.state.userList=======>',this.state.userList);
     // })
-
   }
 
   render() {
