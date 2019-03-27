@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 class Comment extends Component {
   render () {
+    console.log('this.props.children=======>',this.props.children);
+    
     return (
       <div className='comment'>
         <div className='comment-user'>

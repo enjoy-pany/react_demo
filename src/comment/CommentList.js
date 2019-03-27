@@ -10,7 +10,12 @@ class CommentList extends Component {
   render() {
     return (
       <div>
-        {this.props.userList.map((item, index)=> <Comment comment={item} key={index} />)}
+        {this.props.userList.map((item, index)=> <Comment comment={item} key={index}>
+          <div>slot header</div>
+          <div>
+            <h1>slot title</h1>
+          </div>
+        </Comment>)}
       </div>
     )
   }
